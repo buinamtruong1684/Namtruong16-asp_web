@@ -1,0 +1,38 @@
+﻿@model LopHoc
+
+<div class="container">
+    <h3>Xóa Lớp Học</h3>
+    <h5>Bạn có chắc chắn muốn xóa lớp học này?</h5>
+
+    <div class="form-group">
+        <label>Tên Lớp Học:</label>
+        <span>@Model.TenLopHoc</span>
+    </div>
+
+    <div class="form-group">
+        <label>Năm Nhập Học:</label>
+        <span>@Model.NamNhapHoc</span>
+    </div>
+
+    <div class="form-group">
+        <label>Năm Ra Trường:</label>
+        <span>@Model.NamRaTruong</span>
+    </div>
+
+    <div class="form-group">
+        <label>Số Lượng Sinh Viên:</label>
+        <span>@Model.SoLuongSinhVien</span>
+    </div>
+
+    <form method="post" asp-action="DeleteConfirm" asp-route-id="@Model.Id">
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

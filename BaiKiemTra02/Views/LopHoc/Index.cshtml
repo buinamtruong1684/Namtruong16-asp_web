@@ -1,0 +1,34 @@
+﻿﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+   
+    <table class="table">
+        <thead>
+        <th>Ten lop </th>
+        <th>Nam nhap hoc </th>
+        <th>Nam ra truong </th>
+        <th>So luong sinh vien </th>
+        <th>Chuc nang </th>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.LopHocs)
+            {
+                <tr>
+                    <td width="20%">@item.TenLopHoc</td>
+                    <td width="20%">@item.NamNhapHoc</td>
+                    <td width="20%">@item.NamRaTruong</td>
+                    <td width="20%">@item.SoLuongSinhVien</td>
+                    <td width="20%">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Chỉnh sửa</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Xóa</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="LopHoc" asp-action="Create" class="btn btn-primary">Thêm mới</a>
+</div>

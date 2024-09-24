@@ -1,0 +1,38 @@
+﻿@model LopHoc
+
+<div class="container">
+    <h3>Thêm Lớp học</h3>
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="TenLopHoc">Tên Lớp Học</label>
+            <input asp-for="TenLopHoc" type="text" class="form-control" />
+            <span asp-validation-for="TenLopHoc" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="NamNhapHoc">Năm Nhập Học</label>
+            <input asp-for="NamNhapHoc" type="number" class="form-control" />
+            <span asp-validation-for="NamNhapHoc" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="NamRaTruong">Năm Ra Trường</label>
+            <input asp-for="NamRaTruong" type="number" class="form-control" />
+            <span asp-validation-for="NamRaTruong" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SoLuongSinhVien">Số Lượng Sinh Viên</label>
+            <input asp-for="SoLuongSinhVien" type="number" class="form-control" />
+            <span asp-validation-for="SoLuongSinhVien" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tạo mới</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
