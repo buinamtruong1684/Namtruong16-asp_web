@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Books Index";
+}
+
+<div class="container">
+    <h2>Danh sách Sách</h2>
+    <form asp-action="Search" method="get">
+        <input type="text" name="searchString" placeholder="Nhập tên sách hoặc năm xuất bản..." value="@ViewBag.SearchString" />
+        <input type="submit" value="Tìm kiếm" class="btn btn-info" />
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tên Sách</th>
+                <th>Năm Xuất Bản</th>
+                <th>Thể Loại</th>
+                <th>Tác Giả</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Books)
+            {
+                <tr>
+                    <td width="25%">
+                        @item.Title
+                    </td>
+                    <td width="15%">
+                        @item.PublicationYear
+                    </td>
+                    <td width="20%">
+                        @item.Genre
+                    </td>
+                    <td width="20%">
+                        @item.Author.Name
+                    </td>
+                    <td width="20%">
+                        <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-warning btn-sm">Sửa</a> |
+                        <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger btn-sm">Xóa</a> |
+                        <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-info btn-sm">Chi Tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Book" asp-action="Create" class="btn btn-primary">Thêm Sách Mới</a>
+</div>

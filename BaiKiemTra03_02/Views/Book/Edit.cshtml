@@ -1,0 +1,40 @@
+﻿@model Book
+
+<div class="container">
+    <h3>Cập nhật sách</h3>
+    <form method="post" asp-action="Edit">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Title">Tên sách</label>
+            <input asp-for="Title" type="text" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PublicationYear">Năm xuất bản</label>
+            <input asp-for="PublicationYear" type="number" class="form-control" />
+            <span asp-validation-for="PublicationYear" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Genre">Thể loại</label>
+            <input asp-for="Genre" type="text" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AuthorId">Tác giả</label>
+            <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.Authors">
+                <option value="">-- Chọn tác giả --</option> <!-- Tùy chọn mặc định -->
+            </select>
+            <span asp-validation-for="AuthorId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

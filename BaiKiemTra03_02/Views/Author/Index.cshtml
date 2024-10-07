@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BaiKiemTra03_02.Models.Author>
+
+<div class="container">
+    <h3>Danh sách tác giả</h3>
+    <a asp-action="Upsert" class="btn btn-primary">Thêm tác giả</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Tác Giả</th>
+                <th>Tên Tác Giả</th>
+                <th>Quốc Tịch</th>
+                <th>Năm Sinh</th>
+                <th>Chức Năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.AuthorId</td>
+                    <td>@author.Name</td>
+                    <td>@author.Nationality</td>
+                    <td>@author.BirthYear</td>
+                    <td>
+                        <a asp-action="Upsert" asp-route-id="@author.AuthorId" class="btn btn-sm btn-info">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@author.AuthorId" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

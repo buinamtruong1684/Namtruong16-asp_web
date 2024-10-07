@@ -1,0 +1,29 @@
+﻿@model BaiKiemTra03_02.Models.Author
+
+<div class="container">
+    <h3>@(Model.AuthorId == 0 ? "Thêm tác giả mới" : "Cập nhật tác giả")</h3>
+
+    <form asp-action="Upsert" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Name">Tên Tác Giả</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Nationality">Quốc Tịch</label>
+            <input asp-for="Nationality" class="form-control" />
+            <span asp-validation-for="Nationality" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BirthYear">Năm Sinh</label>
+            <input asp-for="BirthYear" class="form-control" />
+            <span asp-validation-for="BirthYear" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cap Nhat</button>
+    </form>
+</div>

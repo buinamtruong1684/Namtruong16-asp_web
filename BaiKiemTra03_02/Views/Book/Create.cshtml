@@ -1,0 +1,46 @@
+﻿@model Book
+
+<div class="container">
+    <h3>Thêm sách mới</h3>
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <!-- Nhập tên sách -->
+        <div class="form-group">
+            <label asp-for="Title">Tên sách</label>
+            <input asp-for="Title" type="text" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <!-- Nhập năm xuất bản -->
+        <div class="form-group">
+            <label asp-for="PublicationYear">Năm xuất bản</label>
+            <input asp-for="PublicationYear" type="number" class="form-control" />
+            <span asp-validation-for="PublicationYear" class="text-danger"></span>
+        </div>
+
+        <!-- Chọn tác giả -->
+        <div class="form-group">
+            <label asp-for="AuthorId">Tác giả</label>
+            <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.Authors">
+                <option value="">-- Chọn tác giả --</option>
+            </select>
+            <span asp-validation-for="AuthorId" class="text-danger"></span>
+        </div>
+
+        <!-- Nhập thể loại -->
+        <div class="form-group">
+            <label asp-for="Genre">Thể loại</label>
+            <input asp-for="Genre" type="text" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tạo mới</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
