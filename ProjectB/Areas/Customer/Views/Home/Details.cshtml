@@ -1,0 +1,73 @@
+﻿@model GioHang
+<style>
+    .product-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .quantity-control {
+        display: flex;
+        justify-content: left;
+        align-items: left;
+    }
+
+        .quantity-control button {
+            width: 40px;
+            height: 40px;
+        }
+
+    .quantity-input {
+        width: 60px;
+        text-align: center;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Hình ảnh sản phẩm -->
+        <div class="col-md-6">
+            <img src="@Model.SanPham.ImageUrl" alt="Product Image" class="product-image">
+        </div>
+        <!-- Chi tiết sản phẩm -->
+        <div class="col-md-6">
+            <h1 class="product-title">@Model.SanPham.Name</h1>
+            <p class="product-description">@Model.SanPham.Description</p>
+            <h4 class="product-price text-danger">
+                @Model.SanPham.Price.ToString("N0") đ
+            </h4>
+            <!-- Bộ chọn số lượng -->
+            <div class="quantity-control my-3">
+                <button class="btn btn-outline-secondary" onclick="decreaseQuantity()">-</button>
+                <input type="text" class="form-control quantity-input mx-2" id="quantity" value="1" readonly>
+                <button class="btn btn-outline-secondary" onclick="increaseQuantity()">+</button>
+            </div>
+            <!-- Nút thêm vào giỏ hàng -->
+            <form id="addToCartForm" method="post" asp-action="Details">
+                <input type="hidden" name="SanPhamId" value="@Model.SanPhamId" />
+                <input type="hidden" name="Quantity" id="quantityInput" value="1" />
+                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+            </form>
+            <!-- Thông báo thành công -->
+            <div id="cart-message" class="alert alert-success mt-3 d-none">
+                Sản phẩm đã được thêm vào giỏ hàng!
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript tùy chỉnh -->
+    <script>
+        function increaseQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            var currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+            document.getElementById('quantityInput').value = quantityInput.value;
+        }
+
+        function decreaseQuantity() {
+            var quantityInput = document.getElementById('quantity');
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+                document.getElementById('quantityInput').value = quantityInput.value;
+            }
+        }
+    </script>
+</div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SanPham>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
+                <!-- Liên kết đến trang chi tiết sản phẩm -->
+                <a asp-action="Details" asp-route-sanphamId="@item.Id">
+                    <img src="@(item.ImageUrl ?? "/images/default-product.png")" class="card-img-top" alt="@item.Name">
+                </a>
+
+                <!-- Chi tiết sản phẩm -->
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <h6 class="card-title">@item.Price.ToString("0,0,0") VND </h6> <!-- Hiển thị giá với định dạng tiền tệ -->
+                    <p class="card-text">@item.Description</p>
+
+                    <div class="row">
+                        <!-- Nút Thêm vào -->
+                        <div class="col-6">
+                            <form asp-action="AddToCart" method="post">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="btn btn-primary">Thêm vào</button>
+                            </form>
+                        </div>
+
+                        <!-- Nút Mua hàng -->
+                        <div class="col-6">
+                            <form asp-action="Purchase" method="post">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger">Mua hàng</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
